@@ -1,5 +1,7 @@
 package com.example.jessi.flickrappfromudemy;
 
+import android.content.Intent;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,10 +11,11 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements GetFlickrJsonData.OnDataAvailable, RecyclerItemClickListener.OnRecyclerClickListener {
+public class MainActivity extends BaseActivity implements GetFlickrJsonData.OnDataAvailable, RecyclerItemClickListener.OnRecyclerClickListener {
 
     private static final String TAG = "MainActivity";
     private FlickrercyclerViewAdapter mFlickrercyclerViewAdapter;
@@ -23,16 +26,14 @@ public class MainActivity extends AppCompatActivity implements GetFlickrJsonData
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        activateToolbar(false);
+
         RecyclerView recyclerView = (RecyclerView)findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager( new LinearLayoutManager(this));
         recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(this, recyclerView, this));
 
         mFlickrercyclerViewAdapter = new FlickrercyclerViewAdapter(new ArrayList<Photo>(),this);
         recyclerView.setAdapter(mFlickrercyclerViewAdapter);
-
-
-//        GetRawData getRawData = new GetRawData(this);
-//        getRawData.execute("https://api.flickr.com/services/feeds/photos_public.gne?tags=android,marshmallow,sdk&tagmode=any&format=json&nojsoncallback=1");
 
         Log.d(TAG, "onCreate: ends");
     }
@@ -64,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements GetFlickrJsonData
     @Override
     public void OnItemClick(View view, int position) {
         Log.d(TAG, "OnItemClick: starts");
+
         Toast.makeText(MainActivity.this, "Normal tap at position" + position, Toast.LENGTH_SHORT).show();
     }
 
@@ -71,5 +73,11 @@ public class MainActivity extends AppCompatActivity implements GetFlickrJsonData
     public void OnItemLongClick(View view, int position) {
         Log.d(TAG, "OnItemLongClick: starts");
         Toast.makeText(MainActivity.this, "Long tap at position" + position, Toast.LENGTH_SHORT).show();
+
+//        Intent intent = new Intent(this,PhotoDetailActivity.class);
+//        intent.putExtra(PHOTO_TRANSFER, mFlickrercyclerViewAdapter.getPhoto(position));
+//        startActivity(intent);
+
+        //crashes here, not sure why, it will not inflate, something with the two photo detail xml files. One shoudl inflate in teh other and they dont
     }
 }

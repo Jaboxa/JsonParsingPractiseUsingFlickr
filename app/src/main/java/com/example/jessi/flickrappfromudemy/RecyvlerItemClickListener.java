@@ -27,7 +27,7 @@ class RecyclerItemClickListener extends RecyclerView.SimpleOnItemTouchListener {
                 Log.d(TAG, "onSingleTapUp: starts");
                 View childView = recyclerView.findChildViewUnder(e.getX(),e.getY());
                 if (childView !=null && mListener !=null){
-                    Log.d(TAG, "onSingleTapUp: calling Listner.onItemClick");
+                    Log.d(TAG, "onSingleTapUp: calling Listener.onItemClick");
                     mListener.OnItemClick(childView, recyclerView.getChildAdapterPosition(childView));
                 }
                 return true;
@@ -38,7 +38,7 @@ class RecyclerItemClickListener extends RecyclerView.SimpleOnItemTouchListener {
                 Log.d(TAG, "onLongPress: starts");
                 View childView = recyclerView.findChildViewUnder(e.getX(),e.getY());
                 if (childView !=null && mListener !=null){
-                    Log.d(TAG, "onLongPress: calling Listner.onItemLongClick");
+                    Log.d(TAG, "onLongPress: calling Listener.onItemLongClick");
                     mListener.OnItemLongClick(childView,recyclerView.getChildAdapterPosition(childView));
                 }
             }

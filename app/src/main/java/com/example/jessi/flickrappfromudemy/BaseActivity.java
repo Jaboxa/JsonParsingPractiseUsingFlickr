@@ -8,8 +8,8 @@ import android.widget.Toolbar;
 public class BaseActivity extends AppCompatActivity {
 
     private static final String TAG = "BaseActivity";
-    private final String FLICKR_QUERY = "FLICKR_QUERY";
-    private final String PHOTO_TRANSFER = "PHOTO_TRANSFER";
+    static final String FLICKR_QUERY = "FLICKR_QUERY";
+    static final String PHOTO_TRANSFER = "PHOTO_TRANSFER";
 
     void activateToolbar (boolean enablehome){
         Log.d(TAG, "activateToolbar: starts");
@@ -21,6 +21,10 @@ public class BaseActivity extends AppCompatActivity {
                 actionBar = getSupportActionBar();
             }
         }
+        if(actionBar != null){
+            actionBar.setDisplayShowHomeEnabled(enablehome);
+        }
     }
+//start here
 
 }
