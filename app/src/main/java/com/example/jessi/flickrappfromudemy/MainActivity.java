@@ -74,9 +74,9 @@ public class MainActivity extends BaseActivity implements GetFlickrJsonData.OnDa
         Log.d(TAG, "OnItemLongClick: starts");
         Toast.makeText(MainActivity.this, "Long tap at position" + position, Toast.LENGTH_SHORT).show();
 
-//        Intent intent = new Intent(this,PhotoDetailActivity.class);
-//        intent.putExtra(PHOTO_TRANSFER, mFlickrercyclerViewAdapter.getPhoto(position));
-//        startActivity(intent);
+        Intent intent = new Intent(this,PhotoDetailActivity.class);
+        intent.putExtra(PHOTO_TRANSFER, mFlickrercyclerViewAdapter.getPhoto(position));
+        startActivity(intent);
 
         //crashes here, not sure why, it will not inflate, something with the two photo detail xml files. One shoudl inflate in teh other and they dont
     }
